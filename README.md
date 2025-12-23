@@ -1,20 +1,148 @@
 <style>
+/* Dark Mode & Layout Overrides */
+body {
+    background-color: #121212 !important;
+    color: #e0e0e0 !important;
+    font-family: system-ui, -apple-system, sans-serif !important;
+    margin: 0 !important;
+}
+
+/* Force full width and hide default theme sidebar */
+.wrapper {
+    width: 95% !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+    padding: 20px !important;
+    display: block !important;
+}
+header {
+    display: none !important;
+}
+section {
+    width: 100% !important;
+    max-width: 100% !important;
+    float: none !important;
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Typography styles since we lost the theme header */
+h1.page-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+p.page-desc {
+    font-size: 1.1rem;
+    color: #aaaaaa;
+    margin-bottom: 2rem;
+}
+
+/* Controls Styling */
+.controls-container {
+    background-color: #1e1e1e;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    margin-bottom: 25px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.control-title {
+    font-weight: bold;
+    color: #fff;
+    margin-right: 5px;
+}
+.radio-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 6px;
+    color: #ccc;
+}
+.radio-label:hover {
+    color: #fff;
+}
+
+/* Table Styling */
+table { 
+    width: 100%; 
+    border-collapse: separate; /* Allows border radius on rows/cells if wanted, but simpler for collapse */
+    border-collapse: collapse;
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+th, td { 
+    border-bottom: 1px solid #333; 
+    border-right: 1px solid #333;
+    padding: 15px; 
+    text-align: left; 
+}
+th:last-child, td:last-child {
+    border-right: none;
+}
+th { 
+    background-color: #2d2d2d; 
+    color: #ffffff; 
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #444;
+}
+tr:last-child td {
+    border-bottom: none;
+}
+tr:hover td {
+    background-color: #2a2a2a;
+}
+
+/* Highlighted Rows (Sundays/Total) */
+tr[style*="bold"] td {
+    background-color: #252525;
+    color: #fff;
+    font-weight: bold;
+}
+tr[style*="bold"]:hover td {
+    background-color: #333;
+}
+
+/* Utility */
 .hidden { display: none; }
-table { width: 100%; border-collapse: collapse; }
-th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-th { background-color: #f2f2f2; }
 </style>
 
-<div style="margin-bottom: 20px;">
-  <div style="margin-bottom: 10px;">
-    <strong>Language: </strong>
-    <input type="radio" id="lang-en" name="lang" value="en" checked onchange="updateView()"> <label for="lang-en">English</label>
-    <input type="radio" id="lang-it" name="lang" value="it" onchange="updateView()"> <label for="lang-it">Italiano</label>
+<!-- Re-adding Title/Desc since we hid the header -->
+<h1 class="page-title">Stephen Dillon Training Plan</h1>
+<p class="page-desc">Training plan for rome marathon</p>
+
+<div class="controls-container">
+  <div class="control-group">
+    <span class="control-title">Language:</span>
+    <label class="radio-label">
+        <input type="radio" id="lang-en" name="lang" value="en" checked onchange="updateView()"> English
+    </label>
+    <label class="radio-label">
+        <input type="radio" id="lang-it" name="lang" value="it" onchange="updateView()"> Italiano
+    </label>
   </div>
-  <div>
-    <strong>Units: </strong>
-    <input type="radio" id="unit-mi" name="unit" value="mi" checked onchange="updateView()"> <label for="unit-mi">Miles</label>
-    <input type="radio" id="unit-km" name="unit" value="km" onchange="updateView()"> <label for="unit-km">Kilometers</label>
+  <div class="control-group">
+    <span class="control-title">Units:</span>
+    <label class="radio-label">
+        <input type="radio" id="unit-mi" name="unit" value="mi" checked onchange="updateView()"> Miles
+    </label>
+    <label class="radio-label">
+        <input type="radio" id="unit-km" name="unit" value="km" onchange="updateView()"> Kilometers
+    </label>
   </div>
 </div>
 
