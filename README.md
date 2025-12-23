@@ -122,7 +122,6 @@ tr[style*="bold"]:hover td {
 </style>
 
 <!-- Re-adding Title/Desc since we hid the header -->
-<h1 class="page-title">Stephen Dillon Training Plan</h1>
 <p class="page-desc">Training plan for rome marathon</p>
 
 <div class="controls-container">
