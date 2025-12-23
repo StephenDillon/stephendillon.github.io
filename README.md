@@ -144,8 +144,9 @@ tr[style*="bold"]:hover td {
         <input type="radio" id="unit-km" name="unit" value="km" onchange="updateView()"> Kilometers
     </label>
   </div>
-  <div class="control-group" style="margin-left: auto;">
-        <a href="./training.ics" class="calendar-btn" download>📅 Download Calendar (ICS)</a>
+  <div class="control-group" style="margin-left: auto; display: flex; gap: 10px;">
+    <a href="./training.ics" class="calendar-btn" download>⬇️ Download ICS</a>
+    <a href="#" id="gcal-btn" class="calendar-btn" target="_blank">📅 Sync to Google Cal</a>
   </div>
 </div>
 <style>
@@ -159,11 +160,27 @@ tr[style*="bold"]:hover td {
     font-size: 0.9rem;
     border: 1px solid #555;
     transition: background 0.2s;
+    white-space: nowrap;
 }
 .calendar-btn:hover {
     background-color: #444;
 }
 </style>
+
+<script>
+window.addEventListener('load', function() {
+    // Construct absolute URL for the ICS file
+    // Assumes the ics file is at the root level relative to this page
+    const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, "").replace(/\/[^\/]*$/, "");
+    const icsUrl = baseUrl + "/training.ics";
+    
+    // Google Calendar 'Add by URL' link
+    // We use the 'cid' parameter to pass the calendar URL
+    const gCalUrl = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(icsUrl);
+    
+    document.getElementById('gcal-btn').href = gCalUrl;
+});
+</script>
 
 <table id="training-plan">
 <thead><tr>
