@@ -168,16 +168,18 @@ tr[style*="bold"]:hover td {
 
 <script>
 window.addEventListener('load', function() {
-    // Construct absolute URL for the ICS file
-    // Assumes the ics file is at the root level relative to this page
-    const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, "").replace(/\/[^\/]*$/, "");
-    const icsUrl = baseUrl + "/training.ics";
+    // Construct absolute URL for the ICS file using the URL API
+    // '.' resolves to the current directory of the page
+    const icsUrl = new URL('./training.ics', window.location.href).href;
     
     // Google Calendar 'Add by URL' link
     // We use the 'cid' parameter to pass the calendar URL
+    // Note: Google Calendar sometimes prefers 'http' or 'webcal' but https usually works if public.
     const gCalUrl = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(icsUrl);
     
     document.getElementById('gcal-btn').href = gCalUrl;
+    
+    console.log("Generated ICS URL for subscription:", icsUrl); 
 });
 </script>
 
