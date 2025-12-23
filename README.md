@@ -144,7 +144,26 @@ tr[style*="bold"]:hover td {
         <input type="radio" id="unit-km" name="unit" value="km" onchange="updateView()"> Kilometers
     </label>
   </div>
+  <div class="control-group" style="margin-left: auto;">
+        <a href="./training.ics" class="calendar-btn" download>📅 Download Calendar (ICS)</a>
+  </div>
 </div>
+<style>
+/* Button Style */
+.calendar-btn {
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border: 1px solid #555;
+    transition: background 0.2s;
+}
+.calendar-btn:hover {
+    background-color: #444;
+}
+</style>
 
 <table id="training-plan">
 <thead><tr>
