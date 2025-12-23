@@ -178,7 +178,7 @@ tr[style*="bold"]:hover td {
   <tr{% if row.is_bold %} style="font-weight: bold;"{% endif %}>
     <td>{{ row.week }}</td>
     <td>{{ row.date }}</td>
-    <td><span class="lang-text" data-en="{{ row.workout_en }}" data-it="{{ row.workout_it }}">{{ row.workout_en }}</span></td>
+    <td><span class="lang-text" data-en="{{ row.workout_en | escape }}" data-it="{{ row.workout_it | escape }}">{{ row.workout_en }}</span></td>
     <td>
       {% if row.dist_km != "-" %}
          <span class="dist-val" data-km="{{ row.dist_km }}"></span>
@@ -188,9 +188,9 @@ tr[style*="bold"]:hover td {
     </td>
     <td>
       {% if row.pace_special_en %}
-         <span class="lang-text" data-en="{{ row.pace_special_en }}" data-it="{{ row.pace_special_it }}">{{ row.pace_special_en }}</span>
+         <span class="lang-text" data-en="{{ row.pace_special_en | escape }}" data-it="{{ row.pace_special_it | escape }}">{{ row.pace_special_en }}</span>
       {% elsif row.pace_km != "" %}
-         <span class="pace-val" data-pace-km="{{ row.pace_km }}" data-pace-mi="{{ row.pace_mi }}">{{ row.pace_mi }}</span>
+         <span class="pace-val" data-pace-km="{{ row.pace_km | escape }}" data-pace-mi="{{ row.pace_mi | escape }}">{{ row.pace_mi }}</span>
       {% else %}
          -
       {% endif %}
