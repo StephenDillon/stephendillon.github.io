@@ -170,11 +170,11 @@ tr[style*="bold"]:hover td {
 window.addEventListener('load', function() {
     // Construct absolute URL for the ICS file using the URL API
     // '.' resolves to the current directory of the page
-    const icsUrl = new URL('./training.ics', window.location.href).href;
+    // We add a cache buster '?v=' to ensure Google Cal doesn't cache a 404 or old version if you just pushed it.
+    const icsUrl = new URL('./training.ics?v=' + new Date().getTime(), window.location.href).href;
     
     // Google Calendar 'Add by URL' link
     // We use the 'cid' parameter to pass the calendar URL
-    // Note: Google Calendar sometimes prefers 'http' or 'webcal' but https usually works if public.
     const gCalUrl = "https://calendar.google.com/calendar/render?cid=" + encodeURIComponent(icsUrl);
     
     document.getElementById('gcal-btn').href = gCalUrl;
